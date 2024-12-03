@@ -2,7 +2,6 @@ package com.javaacademy.car_avito.service;
 
 import com.javaacademy.car_avito.announcement.Announcement;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +19,7 @@ public class AnnouncementStorage {
         data.put(count, announcement);
     }
 
-    public Optional <Announcement> getById(Integer id) {
+    public Optional<Announcement> getById(Integer id) {
         return Optional.ofNullable(data.get(id));
     }
 
