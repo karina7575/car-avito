@@ -12,32 +12,33 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/announcement")
 public class Controller {
     private final AnnouncementStorage announcementStorage;
 
-    @PostMapping("/announcement")
+    @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public void saveAnnouncement(@RequestBody Announcement announcement) {
         log.info(announcement.toString());
         announcementStorage.save(announcement);
     }
 
-    @GetMapping("/announcement/{id}")
+    @GetMapping("/{id}")
     public Announcement getAnnouncementById(@PathVariable Integer id) {
         return announcementStorage.getById(id).orElseThrow();
     }
 
-    @GetMapping("/announcement")
+    @GetMapping
     public List <Announcement> getAllAnnouncement() {
         return announcementStorage.getAll();
     }
 
-    @DeleteMapping("/announcement/{id}")
+    @DeleteMapping("/{id}")
     public void deleteAnnouncementById(@PathVariable Integer id) {
         announcementStorage.deleteById(id);
     }
 
-    @GetMapping("/announcement/brand-search")
+    @GetMapping("/brand-search")
     public List <Announcement> getAllAnnouncementByBrand(@RequestParam String brand) {
         return announcementStorage.getAllByBrand(brand);
     }

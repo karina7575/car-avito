@@ -34,4 +34,5 @@ public class AnnouncementStorage {
     public List<Announcement> getAllByBrand(String brand) {
         return data.values().stream().filter((e) -> e.getBrand().equals(brand)).toList();
     }
+    
 }
