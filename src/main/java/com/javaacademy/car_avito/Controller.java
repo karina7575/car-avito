@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,4 +45,10 @@ public class Controller {
         return announcementStorage.getAllByBrand(brand);
     }
 
+    @GetMapping("/search")
+    public List <Announcement> getParametrizedAnnouncement(@RequestParam (required=false) Optional<String> brand,
+                                                           @RequestParam (required=false) Optional<String> color,
+                                                           @RequestParam (required=false) Optional<BigDecimal> price) {
+        return announcementStorage.getfilter(brand, color, price);
+    }
 }
