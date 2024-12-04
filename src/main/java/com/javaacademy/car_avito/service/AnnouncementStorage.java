@@ -1,6 +1,8 @@
 package com.javaacademy.car_avito.service;
 
 import com.javaacademy.car_avito.announcement.Announcement;
+import com.javaacademy.car_avito.components.Brand;
+import com.javaacademy.car_avito.components.Color;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -40,15 +42,15 @@ public class AnnouncementStorage {
     /*
     Получение всех объявлений по бренду
      */
-    public List<Announcement> getAllByBrand(String brand) {
+    public List<Announcement> getAllByBrand(Brand brand) {
         return data.values().stream().filter((e) -> e.getBrand().equals(brand)).toList();
     }
 
     /*
     Поиск объявлений по параметрам
     */
-    public List<Announcement> getfilter(Optional<String> brand,
-                                        Optional<String> color,
+    public List<Announcement> getfilter(Optional<Brand> brand,
+                                        Optional<Color> color,
                                         Optional<BigDecimal> price) {
         return data.values().stream()
                 .filter((e) -> e.getBrand().equals(brand.orElse(e.getBrand())))

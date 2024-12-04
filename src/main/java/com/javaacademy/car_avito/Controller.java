@@ -1,6 +1,8 @@
 package com.javaacademy.car_avito;
 
 import com.javaacademy.car_avito.announcement.Announcement;
+import com.javaacademy.car_avito.components.Brand;
+import com.javaacademy.car_avito.components.Color;
 import com.javaacademy.car_avito.service.AnnouncementStorage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,13 +50,13 @@ public class Controller {
     }
 
     @GetMapping("/brand-search")
-    public List<Announcement> getAllAnnouncementByBrand(@RequestParam String brand) {
+    public List<Announcement> getAllAnnouncementByBrand(@RequestParam Brand brand) {
         return announcementStorage.getAllByBrand(brand);
     }
 
     @GetMapping("/search")
-    public List<Announcement> getParametrizedAnnouncement(@RequestParam(required = false) Optional<String> brand,
-                                                          @RequestParam(required = false) Optional<String> color,
+    public List<Announcement> getParametrizedAnnouncement(@RequestParam(required = false) Optional<Brand> brand,
+                                                          @RequestParam(required = false) Optional<Color> color,
                                                           @RequestParam(required = false) Optional<BigDecimal> price) {
         return announcementStorage.getfilter(brand, color, price);
     }
