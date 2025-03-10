@@ -19,7 +19,7 @@ public class AnnouncementStorage {
         UUID id = UUID.randomUUID();
         announcement.setId(id);
         if(data.containsKey(id)) {
-            throw new RuntimeException("Уже создержит такой ключ: %s".formatted(id));
+            throw new RuntimeException("Уже содержит такой ключ: %s".formatted(id));
         }
         data.put(id, announcement);
     }
