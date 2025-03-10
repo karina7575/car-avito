@@ -9,16 +9,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class AnnouncementStorage {
-    private final Map<Integer, Announcement> data = new HashMap<>();
-    private Integer count = 0;
+    private final Map<UUID, Announcement> data = new HashMap<>();
 
-    public void save(Announcement announcement) {
-        count++;
-        announcement.setId(count);
-        data.put(count, announcement);
+    public void save(Announcement announcement){
+        UUID id = UUID.randomUUID();
+        announcement.setId(id);
+        if(data.containsKey(id)) {
+            throw new RuntimeException("Уже создержит такой ключ: %s".formatted(id));
+        }
+        data.put(id, announcement);
     }
 
     public Optional<Announcement> getById(Integer id) {

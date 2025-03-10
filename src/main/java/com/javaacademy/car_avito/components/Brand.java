@@ -5,5 +5,6 @@ public enum Brand {
     MAZDA,
     VOLVO,
     LADA,
-    NISSAN;
+    NISSAN,
+    DAEWOO;
 }
